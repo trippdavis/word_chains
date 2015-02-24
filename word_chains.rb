@@ -10,19 +10,19 @@ class WordChainer
 
   def run(source, target)
     @current_words = [source]
-    @all_seen_words = [source]
+    @all_seen_words = { source => nil }
     until current_words.empty?
       current_word = current_words.shift
       new_adjacent_words(current_word)
     end
   end
 
-  def new_adjacent_words(word)
-    new_words = adjacent_words(word)
-    new_words.each do |word|
-      unless all_seen_words.include?(word)
-        all_seen_words << word
-        current_words << word
+  def new_adjacent_words(current_word)
+    new_words = adjacent_words(current_word)
+    new_words.each do |new_word|
+      unless all_seen_words.include?(new_word)
+        all_seen_words[new_word] = current_word
+        current_words << new_word
       end
     end
   end
