@@ -61,3 +61,14 @@ class WordChainer
     adj_words
   end
 end
+
+
+if __FILE__ == $PROGRAM_NAME
+  chain = WordChainer.new('dictionary.txt')
+  puts "Enter the first word in chain"
+  source = gets.chomp
+  puts "Enter the last word in the chain"
+  target = gets.chomp
+  puts ""
+  puts chain.run(source, target)
+end
